@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import NotificationPage from "./pages/NotificationPage";
 import OnboardingPage from "./pages/OnboardingPage";
 import PageLoader from "./components/PageLoader.jsx";
+import Layout from "./components/Layout.jsx";
 
 import useAuthUser from "./hooks/useAuthUser.js";
 
@@ -29,7 +30,10 @@ const App = () => {
           path="/"
           element={
             isAuthenticated && isOnboarded ? (
-              <HomePage />
+              <Layout showSidebar={true}>
+                <HomePage />
+              </Layout>
+              
             ) : (
               <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
             )
