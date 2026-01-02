@@ -9,6 +9,7 @@ import NotificationPage from "./pages/NotificationPage";
 import OnboardingPage from "./pages/OnboardingPage";
 import PageLoader from "./components/PageLoader.jsx";
 import Layout from "./components/Layout.jsx";
+import { useThemeStore } from "./store/useThemeStore.js";
 
 import useAuthUser from "./hooks/useAuthUser.js";
 
@@ -19,12 +20,13 @@ const App = () => {
   const isAuthenticated = Boolean(authUser);
   const isOnboarded = authUser?.isOnboarded;
 
+  const {theme} = useThemeStore();
   if (isLoading) {
     return <PageLoader />;
   }
 
   return (
-    <div className=" h-screen" data-theme="forest">
+    <div className=" h-screen" data-theme={theme}>
       <Routes>
         <Route
           path="/"
