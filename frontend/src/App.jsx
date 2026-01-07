@@ -10,7 +10,7 @@ import OnboardingPage from "./pages/OnboardingPage";
 import PageLoader from "./components/PageLoader.jsx";
 import Layout from "./components/Layout.jsx";
 import { useThemeStore } from "./store/useThemeStore.js";
-
+import ChatPage from "./pages/ChatPage.jsx";
 import useAuthUser from "./hooks/useAuthUser.js";
 
 const App = () => {
@@ -79,6 +79,15 @@ const App = () => {
             )
           }
         />
+        <Route path="/chat/:id" element={
+          isAuthenticated && isOnboarded ? (
+            <Layout showSidebar={false}>
+              <ChatPage/>
+            </Layout>
+          ) :(
+            <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+          )
+        }/>
       </Routes>
       <Toaster />
     </div>
