@@ -13,6 +13,7 @@ import { useThemeStore } from "./store/useThemeStore.js";
 import ChatPage from "./pages/ChatPage.jsx";
 import useAuthUser from "./hooks/useAuthUser.js";
 import CallPage from "./pages/CallPage.jsx";
+import FriendPage from "./pages/FriendPage.jsx";
 
 const App = () => {
   //custom hook to get auth user
@@ -99,6 +100,17 @@ const App = () => {
             <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
           )
         }/>
+
+        <Route path="/friends" element={
+          isAuthenticated && isOnboarded ? (
+            <Layout showSidebar={true}>
+              <FriendPage/>
+            </Layout>
+          ):(
+            <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+          )
+        } />
+
       </Routes>
       <Toaster />
     </div>
